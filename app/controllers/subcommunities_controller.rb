@@ -13,6 +13,24 @@ class SubcommunitiesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @subcom = Subcommunity.find_by_id(params[:id])
+    return render_not_found if @subcom.blank? 
+  end
+
+  def edit
+    @subcom = Subcommunity.find_by_id(params[:id])
+    return render_not_found if @subcom.blank?   
+  end
+
+  def update
+    @subcom = Subcommunity.find_by_id(params[:id])
+    @subcom.update_attributes(subcom_params)
+    redirect_to subcommunities_path
+  end
+
+  private
+
   def subcom_params
     params.require(:subcommunity).permit(:title, :slogan)
   end
