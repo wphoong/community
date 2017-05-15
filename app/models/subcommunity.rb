@@ -1,0 +1,2 @@
+class Subcommunity < ApplicationRecord
+end

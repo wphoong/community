@@ -1,0 +1,8 @@
+<h1>Create a new sub community</h1>
+
+<%= simple_form_for @subcom do |f| %>
+  <%= f.input :title %>
+  <%= f.input :slogan %>
+  <%= f.submit 'Create', class: 'btn btn-primary' %>
+
+<% end %>
