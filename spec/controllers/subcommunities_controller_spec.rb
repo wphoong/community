@@ -10,7 +10,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe "subcommunities#index action" do
-    it "should successfully show the index page" do
+    it "should successfully show the subcommunities index page" do
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -80,10 +80,20 @@ RSpec.describe SubcommunitiesController, type: :controller do
 
       subcom.reload
       expect(subcom.slogan).to eq('Changed')
-      
-    end
-
     
+    end
   end
+
+  describe "subcommunities#destroy action" do
+    it "should successfully delete a subcommunity" do
+      subcom = FactoryGirl.create(:subcommunity)
+      delete :destroy, params: { id: subcom.id}
+      expect(response).to redirect_to root_path
+      subcom1 = Subcommunity.find_by_id(subcom.id)
+      expect(subcom1).to eq nil
+    end
+  end
+
+
 
 end

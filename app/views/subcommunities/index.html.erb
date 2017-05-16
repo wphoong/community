@@ -1,7 +1,8 @@
 <h1> Check out the cool sub communities</h1>
 
 <% @subcom.each do |sub| %>
-<h2><%=sub.title%></h2>
+<h2><%=link_to sub.title, subcommunity_path(sub) %></h2>
 <h3><%=sub.slogan%></h3>
+<%= link_to 'Destroy', subcommunity_path(sub), method: :delete, data: "Are you sure you want to delete", class: 'btn btn-danger' %>
 
 <% end %>

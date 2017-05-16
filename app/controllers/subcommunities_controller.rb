@@ -29,10 +29,21 @@ class SubcommunitiesController < ApplicationController
     redirect_to subcommunities_path
   end
 
+  def destroy
+    @subcom = Subcommunity.find_by_id(params[:id])
+    @subcom.destroy
+    redirect_to root_path
+  end
+
   private
 
   def subcom_params
     params.require(:subcommunity).permit(:title, :slogan)
   end
+
+  # def post_params
+  #   params.require(:post).permit(:title, :description)
+  # end
+
 
 end
