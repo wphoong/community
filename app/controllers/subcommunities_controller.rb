@@ -41,9 +41,7 @@ class SubcommunitiesController < ApplicationController
     params.require(:subcommunity).permit(:title, :slogan)
   end
 
-  # def post_params
-  #   params.require(:post).permit(:title, :description)
-  # end
+ 
 
 
 end

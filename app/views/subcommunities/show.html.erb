@@ -3,4 +3,16 @@
 <h1> Subcommunity for <span><%= @subcom.title %></span></h1>
 <h2><%=@subcom.slogan%></h2>
 
+<br />
+
+<h2>Posts </h2>
+
+<% @subcom.posts.each do |post| %>
+
+  <h3><%=post.title %></h3>
+  <p><%=post.description%></p>
+
+
+<% end %>
+
 

@@ -6,12 +6,8 @@ FactoryGirl.define do
   end
 
   factory :post do
-    title "new"
-    description "EZ"
-  end
-
-  factory :comment do
-    message "new"
+    title "LUL"
+    description "LUL"
   end
 
 end
