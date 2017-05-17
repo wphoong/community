@@ -12,6 +12,11 @@ class PostsController < ApplicationController
     redirect_to subcommunities_path
   end
 
+  def show
+    @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
+    @post = Post.find_by_id(params[id])
+  end
+
   private
 
   def post_params
