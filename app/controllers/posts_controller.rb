@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def new
-    @post = Post.new
     @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
+    @post = Post.new
   end
 
   def create
@@ -13,8 +13,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
-    @post = Post.find_by_id(params[id])
+    @subcom = Subcommunity.find(params[:subcommunity_id])
+    @posts = Post.find(params[:id])
   end
 
   private
