@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :comment do
+    message "yo"
+  end
   
    factory :subcommunity do
     title "hello"

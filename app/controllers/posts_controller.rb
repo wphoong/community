@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   def show
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
