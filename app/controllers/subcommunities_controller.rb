@@ -9,7 +9,7 @@ class SubcommunitiesController < ApplicationController
   end
 
   def create
-    @subcom = Subcommunity.create(subcom_params)
+    @subcom = current_user.subcommunities.create(subcom_params)
     redirect_to root_path
   end
 

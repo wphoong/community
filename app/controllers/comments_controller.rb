@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:post_id])
-    @post.comments.create(comment_params)
+    @post.comments.create(comment_params.merge(user: current_user))
 
     redirect_to subcommunity_post_path(@subcom, @post)
   end

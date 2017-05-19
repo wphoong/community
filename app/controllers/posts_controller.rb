@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def create
     @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
-    @subcom.posts.create(post_params)
+    @subcom.posts.create(post_params.merge(user: current_user))
 
     redirect_to subcommunity_path(@subcom)
   end

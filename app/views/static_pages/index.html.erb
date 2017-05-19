@@ -5,6 +5,9 @@
   <div>
     <%= post.title %>
     <%= post.description %>
+    <% if post.user.present? %>
+      <small> -<%= post.user.email%></small>
+    <% end %>
   </div> 
 
 <% end %>

@@ -1,6 +1,9 @@
 
 <%= @post.title %>
 <%= @post.description %>
+<% if @post.user.present? %>
+  <small> -<%=@post.user.email%></small>
+<% end %>
 
 <%= link_to 'Edit', edit_subcommunity_post_path(@subcom, @post), class: 'btn btn-primary btn-sm' %>
 
@@ -23,9 +26,13 @@
 <div>
   <%=comment.message %>
   <!-- Button trigger modal for editing/updating comments-->
+  <% if comment.user.present? %>
+    <small> -<%=comment.user.email%></small>
+  <% end %>
   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">
     Edit
   </button>
+
   <%= link_to 'Destroy', subcommunity_post_comment_path(@subcom, @post, comment), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
 
 
