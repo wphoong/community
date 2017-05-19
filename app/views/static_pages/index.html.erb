@@ -1,1 +1,10 @@
 <h1> Welcome to Community</h1>
+
+
+<% @posts.each do |post| %>
+  <div>
+    <%= post.title %>
+    <%= post.description %>
+  </div> 
+
+<% end %>
