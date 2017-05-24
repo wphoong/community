@@ -4,5 +4,6 @@ class Subcommunity < ApplicationRecord
 
   belongs_to :user
 
+  has_many :subsciptions
   has_many :posts
 end

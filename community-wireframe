@@ -1,0 +1,45 @@
+Community app wireframe
+
+
+Front page
+
+  -index, show community posts
+  -link to create form
+  
+
+
+Subcommunity
+  
+  -controller
+  -model
+    -name
+    
+
+  -associations
+    -user
+    -subscribed
+
+  -Post
+    -comments
+      -associations
+        -post
+        -user
+        
+
+  -show page for each subcommunity
+    -create new post
+
+    -show page for each post
+      -create comment 
+
+
+User features
+  -log in
+  -reg
+  -forgot pw
+  -profile show page
+    -all comments
+
+  
+
+

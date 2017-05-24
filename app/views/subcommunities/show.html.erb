@@ -3,9 +3,18 @@
 <h1> Subcommunity for <span><%= @subcom.title %></span></h1>
 <h2><%=@subcom.slogan%></h2>
 
+<% if current_user && current_user.subscribed?(@subcom) %>
+  <h3 class='badge badge-info'>Subscribed!</h3>
+<% else %>
+<%= link_to 'Subscribe', subcommunity_subscriptions_path(@subcom), class: 'btn btn-success btn-sm', method: :post %>
+<% end %>
+
+<br />
+<br />
 <%= link_to 'Add a Post', new_subcommunity_post_path(@subcom), class: 'btn btn-primary btn-small' %>
 
 <br />
+
 
 <h2>Posts </h2>
 
