@@ -41,13 +41,7 @@ RSpec.describe SubscriptionsController, type: :controller do
   # SubscriptionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
-      subscription = Subscription.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
+ 
 
   describe "GET #show" do
     it "returns a success response" do
@@ -57,20 +51,7 @@ RSpec.describe SubscriptionsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_success
-    end
-  end
 
-  describe "GET #edit" do
-    it "returns a success response" do
-      subscription = Subscription.create! valid_attributes
-      get :edit, params: {id: subscription.to_param}, session: valid_session
-      expect(response).to be_success
-    end
-  end
 
   describe "POST #create" do
     context "with valid params" do

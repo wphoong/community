@@ -3,39 +3,51 @@ Community app wireframe
 
 Front page
 
-  -index, show community posts
-  -link to create form
+  //-index, show community posts
+  //-link to create form
   
 
 
 Subcommunity
   
-  -controller
-  -model
-    -name
+  //-controller
+  //-model
+    //-name
     
 
   -associations
-    -user
-    -subscribed
+    //-user
+      -subscribed
+      -user_id
 
   -Post
-    -comments
-      -associations
-        -post
-        -user
+    //-comments
+      //-associations
+        //-post
+        //-user
+
+    -Subscriptions
+      -user
+
+      -subcription model
+        t.integer :user_id
+        t.integer :subcommunity_id
+
+        index :user_id, :subcommunity_id
+
+        belongs_to :user
         
 
-  -show page for each subcommunity
-    -create new post
+  //-show page for each subcommunity
+    //-create new post
 
-    -show page for each post
-      -create comment 
+    //-show page for each post
+      //-create comment 
 
 
 User features
-  -log in
-  -reg
+  //-log in
+  //-reg
   -forgot pw
   -profile show page
     -all comments

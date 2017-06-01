@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  
+  let(:subcom) { FactoryGirl.create(:subcommunity) }
+
   describe "posts#new action" do
     it "should successfully show the new posts form" do
-      subcom = FactoryGirl.create(:subcommunity)
-
       get :new, params: { subcommunity_id: subcom.id }
       expect(response).to have_http_status(:success)
 
