@@ -1,4 +1,6 @@
 class SubcommunitiesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :new, :edit, :update, :destroy]
+
 
   def index
     @subcom = Subcommunity.all
@@ -10,7 +12,11 @@ class SubcommunitiesController < ApplicationController
 
   def create
     @subcom = current_user.subcommunities.create(subcom_params)
-    redirect_to root_path
+    if @subcom.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show

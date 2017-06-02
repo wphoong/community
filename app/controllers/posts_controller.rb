@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
@@ -13,8 +14,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @subcom = Subcommunity.find(params[:subcommunity_id])
-    @post = Post.find(params[:id])
+    @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
+    @post = Post.find_by_id(params[:id])
+    return render_not_found if @post.blank?
     @comment = Comment.new
   end
 

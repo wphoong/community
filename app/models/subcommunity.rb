@@ -4,6 +4,6 @@ class Subcommunity < ApplicationRecord
 
   belongs_to :user
 
-  has_many :subsciptions, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :posts, dependent: :destroy
 end
