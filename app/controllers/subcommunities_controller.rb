@@ -1,6 +1,5 @@
 class SubcommunitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: %i[create new edit update destroy]
 
   def index
     @subcom = Subcommunity.all
@@ -21,22 +20,25 @@ class SubcommunitiesController < ApplicationController
 
   def show
     @subcom = Subcommunity.find_by_id(params[:id])
-    return render_not_found if @subcom.blank? 
+    return render_not_found if @subcom.blank?
   end
 
   def edit
     @subcom = Subcommunity.find_by_id(params[:id])
-    return render_not_found if @subcom.blank?   
+    return render_forbidden if @subcom.user != current_user
+    return render_not_found if @subcom.blank?
   end
 
   def update
     @subcom = Subcommunity.find_by_id(params[:id])
+    return render_forbidden if @subcom.user != current_user
     @subcom.update_attributes(subcom_params)
     redirect_to subcommunities_path
   end
 
   def destroy
     @subcom = Subcommunity.find_by_id(params[:id])
+    return render_forbidden if @subcom.user != current_user
     @subcom.destroy
     redirect_to root_path
   end
@@ -46,8 +48,4 @@ class SubcommunitiesController < ApplicationController
   def subcom_params
     params.require(:subcommunity).permit(:title, :slogan)
   end
-
- 
-
-
 end

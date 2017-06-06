@@ -5,8 +5,7 @@ class AddIndexUserIdInPostAndCommentsSubcom < ActiveRecord::Migration[5.0]
     add_column :comments, :user_id, :integer
 
     add_index :subcommunities, :user_id
-    add_index :posts, [:user_id, :subcommunity_id]
-    add_index :comments, [:user_id, :post_id]
+    add_index :posts, %i[user_id subcommunity_id]
+    add_index :comments, %i[user_id post_id]
   end
-
 end

@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @subcom = Subcommunity.find(params[:subcommunity_id])
@@ -12,6 +13,8 @@ class CommentsController < ApplicationController
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
+    return render_forbidden if @comment.user != current_user
+    return render_not_found if @comment.blank?
     @comment.update_attributes(comment_params)
 
     redirect_to subcommunity_post_path(@subcom, @post)
@@ -21,6 +24,8 @@ class CommentsController < ApplicationController
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
+    return render_forbidden if @comment.user != current_user
+    return render_not_found if @comment.blank?
     @comment.destroy
     redirect_to subcommunity_post_path(@subcom, @post)
   end
@@ -30,5 +35,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:message)
   end
-
 end

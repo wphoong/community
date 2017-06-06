@@ -8,30 +8,29 @@ FactoryGirl.define do
     sequence :email do |n|
       "dummyEmail#{n}@gmail.com"
     end
-    password "secretPassword"
-    password_confirmation "secretPassword"
+    password 'secretPassword'
+    password_confirmation 'secretPassword'
   end
 
   factory :comment do
-    message "yo"
+    message 'LUL'
 
     association :post
     association :user
   end
-  
-   factory :subcommunity do
-    title "hello"
-    slogan "Plebs"
+
+  factory :subcommunity do
+    title 'hello'
+    slogan 'Plebs'
 
     association :user
   end
 
   factory :post do
-    title "LUL"
-    description "LUL"
+    title 'LUL'
+    description 'LUL'
 
     association :subcommunity
     association :user
   end
-
 end

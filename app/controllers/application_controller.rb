@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def render_not_found
     render plain: 'Not found :(', status: :not_found
   end
+
+  def render_forbidden
+    return render text: 'Not Allowed >:O', status: :forbidden
+  end
 end

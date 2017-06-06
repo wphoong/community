@@ -1,42 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
- 
-  # describe "comments#create action" do
-  #   it "should successfully create a new comment in its subcommunity" do
-  #     post :create, params: { comment: { message: 'New' } }
-  #     expect(response).to redirect_to root_path
+  let(:user) { FactoryGirl.create(:user) }
+  let(:subcom) { FactoryGirl.create(:subcommunity) }
+  let(:posts) { FactoryGirl.create(:post) }
 
-  #     comment = Comment.last
-  #     expect(comment.message).to eq("New")
-  #   end
-  # end
+  describe 'comments#create action' do
+    it 'create a new comment in its post' do
+      sign_in user
 
-  # describe "comments#edit action" do
-  #   it "should successfuly show the edit comment form" do
-  #     comment = FactoryGirl.create(:comment)
-  #     get :edit, params: { id: comment.id}
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+      post :create, params: { subcommunity_id: subcom.id, post_id: posts.id, comment: { message: 'new' } }
+      expect(response).to redirect_to subcommunity_post_path(subcom.id, posts.id)
 
-  # describe "comments#update action" do
-  #   it "should successfully update the comment" do
-  #     comment = FactoryGirl.create(:comment, message: "LUL")
-  #     patch :update, params: { id: comment.id, message: "Changed" }
-  #     comment.reload
-  #     expect(comment.message).to eq("changed")
-  #   end
-  # end
+      comment1 = Comment.last
+      expect(comment1.message).to eq('new')
+    end
+  end
 
-  # describe "comments#destroy action" do
-  #   it "should successfully destroy the comment" do
-  #     comment = FactoryGirl.create(:comment)
-  #     delete :destroy, params: { id: comment.id }
-  #     expect(response).to redirect_to root_path
+  describe 'comments#update action' do
+    it 'should successfully update the comment' do
+      comment = FactoryGirl.create(:comment)
+      sign_in comment.user
 
-  #     comment1 = FactoryGirl.find_by_id(comment.id)
-  #     expect(comment).to eq nil
-  #   end
-  # end
+      patch :update, params: { subcommunity_id: subcom.id, post_id: posts.id, id: comment.id, comment: { message: 'Changed' } }
+
+      comment.reload
+      expect(comment.message).to eq('Changed')
+    end
+  end
+
+  describe 'comments#destroy action' do
+    it 'should successfully destroy the comment' do
+      comment = FactoryGirl.create(:comment)
+      sign_in comment.user
+
+      delete :destroy, params: { subcommunity_id: subcom.id, post_id: posts.id, id: comment.id }
+      comment1 = Comment.find_by_id(comment.id)
+
+      expect(comment1).to eq nil
+    end
+  end
 end

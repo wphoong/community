@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe SubscriptionsHelper, type: :helper do
-  
 end
