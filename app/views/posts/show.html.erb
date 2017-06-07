@@ -5,10 +5,11 @@
   <small> -<%=@post.user.email%></small>
 <% end %>
 
+<% if current_user && current_user == @post.user %>
 <%= link_to 'Edit', edit_subcommunity_post_path(@subcom, @post), class: 'btn btn-primary btn-sm' %>
 
 <%= link_to 'Destroy', subcommunity_post_path(@subcom, @post), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
-
+<% end %>
 <br />
 <br />
 
@@ -29,11 +30,14 @@
   <% if comment.user.present? %>
     <small> -<%=comment.user.email%></small>
   <% end %>
+
+  <% if current_user && current_user == comment.user %>
   <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">
     Edit
   </button>
 
   <%= link_to 'Destroy', subcommunity_post_comment_path(@subcom, @post, comment), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
+  <% end %>
 
 
    <!-- Modal for updating comments -->

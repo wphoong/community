@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_forbidden
-    return render text: 'Not Allowed >:O', status: :forbidden
+    render text: 'Not Allowed >:O', status: :forbidden
   end
 end
