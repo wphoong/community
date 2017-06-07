@@ -8,4 +8,5 @@ Rails.application.routes.draw do
       resources :comments, only: %i[create edit update destroy]
     end
   end
+  resources :users, only: :show
 end
