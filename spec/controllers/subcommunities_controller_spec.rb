@@ -4,13 +4,6 @@ RSpec.describe SubcommunitiesController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:subcom) { FactoryGirl.create(:subcommunity) }
 
-  describe 'static_pages#index action' do
-    it 'should successfully show the index page' do
-      get :index
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'subcommunities#index action' do
     it 'should successfully show the subcommunities index page' do
       get :index

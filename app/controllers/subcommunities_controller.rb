@@ -19,14 +19,15 @@ class SubcommunitiesController < ApplicationController
   end
 
   def show
+    @subs = Subscription.find_by_id(params[:subscription_id])
     @subcom = Subcommunity.find_by_id(params[:id])
     return render_not_found if @subcom.blank?
   end
 
   def edit
     @subcom = Subcommunity.find_by_id(params[:id])
-    return render_forbidden if @subcom.user != current_user
     return render_not_found if @subcom.blank?
+    return render_forbidden if current_user != @subcom.user
   end
 
   def update

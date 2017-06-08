@@ -13,8 +13,8 @@ class CommentsController < ApplicationController
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    return render_forbidden if @comment.user != current_user
     return render_not_found if @comment.blank?
+    return render_forbidden if @comment.user != current_user
     @comment.update_attributes(comment_params)
 
     redirect_to subcommunity_post_path(@subcom, @post)
@@ -24,8 +24,8 @@ class CommentsController < ApplicationController
     @subcom = Subcommunity.find(params[:subcommunity_id])
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    return render_forbidden if @comment.user != current_user
     return render_not_found if @comment.blank?
+    return render_forbidden if @comment.user != current_user
     @comment.destroy
     redirect_to subcommunity_post_path(@subcom, @post)
   end

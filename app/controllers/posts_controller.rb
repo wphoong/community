@@ -23,15 +23,15 @@ class PostsController < ApplicationController
   def edit
     @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
     @post = Post.find(params[:id])
-    return render_forbidden if @post.user != current_user
     return render_not_found if @post.blank?
+    return render_forbidden if @post.user != current_user
   end
 
   def update
     @subcom = Subcommunity.find_by_id(params[:subcommunity_id])
     @post = Post.find(params[:id])
-    return render_forbidden if @post.user != current_user
     return render_not_found if @post.blank?
+    return render_forbidden if @post.user != current_user
 
     @post.update_attributes(post_params)
     redirect_to subcommunities_path
@@ -39,8 +39,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    return render_forbidden if @post.user != current_user
     return render_not_found if @post.blank?
+    return render_forbidden if @post.user != current_user
     @post.destroy
     redirect_to subcommunities_path
   end

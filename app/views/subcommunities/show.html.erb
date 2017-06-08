@@ -9,6 +9,8 @@
 <%= link_to 'Subscribe', subcommunity_subscriptions_path(@subcom), class: 'btn btn-success btn-sm', method: :post %>
 <% end %>
 
+<%= link_to 'Unsub', subcommunity_subscriptions_path(@subcom, @subs), class: 'btn btn-info', data: { confirm: 'Are you sure?' } ,method: :destroy %>
+
 <br />
 <br />
 <%= link_to 'Add a Post', new_subcommunity_post_path(@subcom), class: 'btn btn-primary btn-small' %>

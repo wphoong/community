@@ -3,33 +3,32 @@
 <h2>Subcribed Subcommunities</h2>
 
 <% current_user.subscribed_subcoms.each do |subscribed| %>
-<%= link_to subcommunity_path(subscribed) do  %>
-<p> <%= subscribed.title %></p>
-<% end %>
+  <%= link_to subcommunity_path(subscribed) do  %>
+    <p> <%= subscribed.title %> </p>
+  <% end %>
 <% end %>
 
 <h2>Subcommunities Created</h2>
 
 <% current_user.subcommunities.each do |subcom| %>
-<%= link_to subcommunity_path(subcom) do %>
-<p><%= subcom.title %> - <span><%=subcom.slogan%></p>
-<% end %>
+  <%= link_to subcommunity_path(subcom) do %>
+    <p><%= subcom.title %> - <span><%=subcom.slogan%></p>
+  <% end %>
 
 <% end %>
 
 <h2>Posts</h2>
 
 <% current_user.posts.each do |post| %>
-
-<%= link_to subcommunity_post_path(post.subcommunity, post) do %>
-<p><%= post.title %> - <span><%=post.description%></p>
-<%end%>
+  <%= link_to subcommunity_post_path(post.subcommunity, post) do %>
+    <p><%= post.title %> - <span><%=post.description%></p>
+  <%end%>
 <% end %>
 
 
 <h2>Comments</h2>
 <% current_user.comments.each do |comment| %>
-<%= link_to subcommunity_post_path(comment.post.subcommunity, comment.post) do %>
-<p><%= comment.message %></p>  
-<%end%>
+  <%= link_to subcommunity_post_path(comment.post.subcommunity, comment.post) do %>
+    <p><%= comment.message %></p>  
+  <%end%>
 <% end %>

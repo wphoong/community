@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:subcom) { FactoryGirl.create(:subcommunity) }
-  # let(:post) { FactoryGirl.create(:post) }
 
   describe 'posts#new action' do
     it 'should require users is signed in' do
