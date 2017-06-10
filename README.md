@@ -1,24 +1,5 @@
-# README
+# Community
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Community is a user-content generated social discussion web application built using the Ruby on Rails framework, HTML and CSS. Community includes features such as subcommunity creation, user posts, user comments, and user authentication.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Community can be found at https://community-wilson-xp.herokuapp.com/
