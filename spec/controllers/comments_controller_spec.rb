@@ -35,7 +35,7 @@ RSpec.describe CommentsController, type: :controller do
       sign_in comment.user
 
       delete :destroy, params: { subcommunity_id: subcom.id, post_id: posts.id, id: comment.id }
-      comment1 = Comment.find_by_id(comment.id)
+      comment1 = Comment.find_by(id: comment.id)
 
       expect(comment1).to eq nil
     end

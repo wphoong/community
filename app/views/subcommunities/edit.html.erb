@@ -1,9 +1,8 @@
-<h1>Edit your subcommunity</h1>
-
-<%= simple_form_for @subcom do |f| %>
-
-  <%=f.input :title %>
-  <%= f.input :slogan %>
-  <%= f.submit 'Update', class: 'btn btn-success' %>
-
-<%end %>
+<div class="booyah-box">
+  <h2 class="text-center">Edit your subcommunity</h2>
+    <%= simple_form_for @subcom do |f| %>
+    <%=f.input :title %>
+    <%= f.input :slogan %>
+    <%= f.submit 'Update', class: 'btn btn-success' %>
+  <%end %>
+</div>

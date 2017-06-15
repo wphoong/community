@@ -1,10 +1,8 @@
-<h1> Edit Post </h1>
-
-<%= simple_form_for @post, url: subcommunity_post_path(@subcom) do |f| %>
-
+<div class="booyah-box">
+  <h1> Edit Post </h1>
+    <%= simple_form_for @post, url: subcommunity_post_path(@subcom) do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.submit 'Update', class: 'btn btn-success' %>
-
-
   <% end %>
+</div>

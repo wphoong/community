@@ -10,7 +10,7 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to redirect_to new_user_session_path
     end
 
-    it 'should successfully show the new posts form' do
+    it 'should show the new posts form' do
       sign_in user
       get :new, params: { subcommunity_id: subcom.id }
       expect(response).to have_http_status(:success)
@@ -18,7 +18,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'posts#create action' do
-    it 'should successfully create a new post' do
+    it 'should create a new post' do
       sign_in user
 
       post :create, params: { subcommunity_id: subcom.id, post: { title: 'LUL', description: 'Kappa' } }
@@ -29,7 +29,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'posts#show action' do
-    it 'should successfully show the post page if found' do
+    it 'should show the post page if found' do
       post = FactoryGirl.create(:post)
       get :show, params: { subcommunity_id: subcom.id, id: post.id }
       expect(response).to have_http_status(:success)
@@ -42,7 +42,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'posts#edit' do
-    it 'should successfully show the edit post form' do
+    it 'should show the edit post form' do
       post = FactoryGirl.create(:post)
       sign_in post.user
 
@@ -52,7 +52,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'posts#update' do
-    it 'should successfully show the edit post form' do
+    it 'should show the edit post form' do
       post = FactoryGirl.create(:post, title: 'intial')
       sign_in post.user
       patch :update, params: { subcommunity_id: subcom.id, id: post.id, post: { title: 'changed' } }
@@ -64,12 +64,12 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'posts#destroy' do
-    it 'should successfully show the edit post form' do
+    it 'should show the edit post form' do
       post = FactoryGirl.create(:post)
       sign_in post.user
 
       delete :destroy, params: { subcommunity_id: subcom.id, id: post.id }
-      post1 = Post.find_by_id(post.id)
+      post1 = Post.find_by(id: post.id)
       expect(post1).to eq nil
     end
   end

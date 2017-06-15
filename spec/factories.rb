@@ -29,7 +29,7 @@ FactoryGirl.define do
   factory :post do
     title 'LUL'
     description 'LUL'
-
+    
     association :subcommunity
     association :user
   end

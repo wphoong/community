@@ -3,8 +3,7 @@ AllCops:
     - bin/**/*
     - db/**/*
     - vendor/**/*
-    - spec/
-
+    - config/environments/*
 
 Rails:
   Enabled: true
@@ -31,6 +30,10 @@ Documentation:
 
 # Disables "Line is too long" warning
 LineLength:
+  Enabled: false
+
+# Disables "Block has too many lines"
+BlockLength:
   Enabled: false
 
 CyclomaticComplexity:

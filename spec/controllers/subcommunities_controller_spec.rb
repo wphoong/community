@@ -5,7 +5,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   let(:subcom) { FactoryGirl.create(:subcommunity) }
 
   describe 'subcommunities#index action' do
-    it 'should successfully show the subcommunities index page' do
+    it 'should show the subcommunities index page' do
       get :index
       expect(response).to have_http_status(:success)
     end
@@ -17,7 +17,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
       expect(response).to redirect_to new_user_session_path
     end
 
-    it 'should successfully show the new subcommunity form' do
+    it 'should show the new subcommunity form' do
       sign_in user
 
       get :new
@@ -26,7 +26,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe 'subcommunities#create action' do
-    it 'should successfully create a new subcommunity in our database' do
+    it 'should create a new subcommunity in our database' do
       sign_in user
 
       post :create, params: { subcommunity: { title: 'Nub', slogan: 'For nubs' } }
@@ -39,7 +39,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe 'subcommunities#show action' do
-    it 'should successfully show each subcommunity page' do
+    it 'should show each subcommunity page' do
       get :show, params: { id: subcom.id }
       expect(response).to have_http_status(:success)
     end
@@ -51,7 +51,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe 'subcommunities#edit action' do
-    it 'should successfully show the subcommunity edit page' do
+    it 'should show the subcommunity edit page' do
       sign_in subcom.user
       get :edit, params: { id: subcom.id }
       expect(response).to have_http_status(:success)
@@ -65,7 +65,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe 'subcommunities#update action' do
-    it 'should successfully update the subcommunity title' do
+    it 'should update the subcommunity title' do
       subcom = FactoryGirl.create(:subcommunity, title: 'Initial Value')
       sign_in subcom.user
 
@@ -76,7 +76,7 @@ RSpec.describe SubcommunitiesController, type: :controller do
       expect(subcom.title).to eq('Changed')
     end
 
-    it 'should successfully update the subcommunity slogan' do
+    it 'should update the subcommunity slogan' do
       subcom = FactoryGirl.create(:subcommunity, slogan: 'Initial Value')
       sign_in subcom.user
 
@@ -89,11 +89,11 @@ RSpec.describe SubcommunitiesController, type: :controller do
   end
 
   describe 'subcommunities#destroy action' do
-    it 'should successfully delete a subcommunity' do
+    it 'should delete a subcommunity' do
       sign_in subcom.user
       delete :destroy, params: { id: subcom.id }
       expect(response).to redirect_to root_path
-      subcom1 = Subcommunity.find_by_id(subcom.id)
+      subcom1 = Subcommunity.find_by(id: subcom.id)
       expect(subcom1).to eq nil
     end
   end

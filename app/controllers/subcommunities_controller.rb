@@ -19,26 +19,26 @@ class SubcommunitiesController < ApplicationController
   end
 
   def show
-    @subs = Subscription.find_by_id(params[:subscription_id])
-    @subcom = Subcommunity.find_by_id(params[:id])
+    @subs = Subscription.find_by(id: params[:subscription_id])
+    @subcom = Subcommunity.find_by(id: params[:id])
     return render_not_found if @subcom.blank?
   end
 
   def edit
-    @subcom = Subcommunity.find_by_id(params[:id])
+    @subcom = Subcommunity.find_by(id: params[:id])
     return render_not_found if @subcom.blank?
     return render_forbidden if current_user != @subcom.user
   end
 
   def update
-    @subcom = Subcommunity.find_by_id(params[:id])
+    @subcom = Subcommunity.find_by(id: params[:id])
     return render_forbidden if @subcom.user != current_user
     @subcom.update_attributes(subcom_params)
     redirect_to subcommunities_path
   end
 
   def destroy
-    @subcom = Subcommunity.find_by_id(params[:id])
+    @subcom = Subcommunity.find_by(id: params[:id])
     return render_forbidden if @subcom.user != current_user
     @subcom.destroy
     redirect_to root_path

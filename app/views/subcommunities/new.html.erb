@@ -1,8 +1,8 @@
-<h1>Create a new sub community</h1>
-
-<%= simple_form_for @subcom do |f| %>
-  <%= f.input :title %>
-  <%= f.input :slogan %>
-  <%= f.submit 'Create', class: 'btn btn-primary' %>
-
-<% end %>
+<div class="booyah-box">
+  <h2 class="text-center">Create a new sub community</h2>
+    <%= simple_form_for @subcom do |f| %>
+    <%= f.input :title %>
+    <%= f.input :slogan %>
+    <%= f.submit 'Create', class: 'btn btn-primary' %>
+  <% end %>
+</div>
