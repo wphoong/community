@@ -1,71 +1,64 @@
-
-<h2><%= @post.title %></h2>
-<h3><%= @post.description %></h3>
-<% if @post.user.present? %>
-  <small> -<%=@post.user.email%></small>
-<% end %>
-
-<% if current_user && current_user == @post.user %>
-<%= link_to 'Edit', edit_subcommunity_post_path(@subcom, @post), class: 'btn btn-primary btn-sm' %>
-
-<%= link_to 'Destroy', subcommunity_post_path(@subcom, @post), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
-<% end %>
-<br />
-<br />
-
-<!-- Button trigger modal for Creating a comment-->
-<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
-  Add a Comment
-</button>
-
-<br />
-<br />
-
-
-<% @post.comments.each do |comment| %>
-
-<div>
-  <%=comment.message %>
-  <!-- Button trigger modal for editing/updating comments-->
-  <% if comment.user.present? %>
-    <small> -<%=comment.user.email%></small>
+<div class="booyah-box">
+  <h1><%= @post.title %></h1>
+  <h4><%= @post.description %></h3>
+  <hr />
+  <% if @post.user.present? %>
+    <small> - <%=@post.user.email%></small>
   <% end %>
-
-  <% if current_user && current_user == comment.user %>
-  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">
-    Edit
+  <% if current_user && current_user == @post.user %>
+    <%= link_to 'Edit', edit_subcommunity_post_path(@subcom, @post), class: 'btn btn-primary btn-sm' %>
+    <%= link_to 'Destroy', subcommunity_post_path(@subcom, @post), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
+  <% end %>
+  <br />
+  <br />
+  <!-- Button trigger modal for Creating a comment-->
+  <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+    Add a Comment
   </button>
-
-  <%= link_to 'Destroy', subcommunity_post_comment_path(@subcom, @post, comment), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
-  <% end %>
-
-
-   <!-- Modal for updating comments -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel2">
-          Edit Comment</h4>
-        </div>
-        <%= simple_form_for comment, url: subcommunity_post_comment_path(@subcom, @post, comment) do |f| %>
-        <div class="modal-body">
-          <%= f.input :message %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= f.submit "Update", class: 'btn btn-primary' %>
-        </div>
+  <br />
+  <br />
+  <div class="booyah-box">
+    <% @post.comments.each do |comment| %>
+      <p><%=comment.message %>
+        <!-- Button trigger modal for editing/updating comments-->
+        <% if comment.user.present? %>
+          <small> - <%=comment.user.email%></small>
         <% end %>
+        <% if current_user && current_user == comment.user %>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">
+            Edit
+          </button>
+          <%= link_to 'Destroy', subcommunity_post_comment_path(@subcom, @post, comment), method: :delete, data: { confirm: "Are you sure you want to delete"} , class: 'btn btn-danger btn-sm' %>
+        <% end %>
+      </p>
+      <hr />
+      <!-- Modal for updating comments -->
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel2">
+                Edit Comment</h4>
+              <%= simple_form_for comment, url: subcommunity_post_comment_path(@subcom, @post, comment) do |f| %>
+                <div class="modal-body">
+                  <%= f.input :message %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <%= f.submit "Update", class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+      <!-- end of modal -->
+    <% end %>
+  </div>  
 </div>
-
-<% end %>
 
 <!-- Modal for Creating comments -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -90,9 +83,13 @@
       </div>
     </div>
   </div>
+</div>
+<!-- end of modal -->
 
 
- 
+
+
+
 
 
 

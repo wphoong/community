@@ -1,38 +1,31 @@
-
-
-<h1> Subcommunity for <span><%= @subcom.title %></span></h1>
-<h2><%=@subcom.slogan%></h2>
-
-<% if current_user && current_user.subscribed?(@subcom) %>
-  <h3 class='badge badge-info'>Subscribed!</h3>
-<% else %>
-<%= link_to 'Subscribe', subcommunity_subscriptions_path(@subcom), class: 'btn btn-success btn-sm', method: :post %>
-<% end %>
-
-<%= link_to 'Unsub', subcommunity_subscriptions_path(@subcom, @subs), class: 'btn btn-info', data: { confirm: 'Are you sure?' } ,method: :destroy %>
-
-<br />
-<br />
-<%= link_to 'Add a Post', new_subcommunity_post_path(@subcom), class: 'btn btn-primary btn-small' %>
-
-<br />
-
-
-<h2>Posts </h2>
-
-<% @subcom.posts.each do |post| %>
-
-<h3><%=link_to post.title, subcommunity_post_path(@subcom, post) %></h3>
-
-<p><%=post.description%>
-  <span>
-    <% if post.user.present? %>
-    <small> -<%= post.user.email%></small>
+<div class='booyah-box'>
+  <h1>Subcommunity for <span><%= @subcom.title %></span></h1>
+  <h2><%=@subcom.slogan%></h2>
+  <% if current_user && current_user.subscribed?(@subcom) %>
+    <h3 class='badge badge-info'>Subscribed!</h3>
+  <% else %>
+    <%= link_to 'Subscribe', subcommunity_subscriptions_path(@subcom), class: 'btn btn-success btn-sm', method: :post %>
+  <% end %>
+  <%= link_to 'Unsub', subcommunity_subscriptions_path(@subcom, @subs), class: 'btn btn-info', data: { confirm: 'Are you sure?' }, method: :destroy %>
+  <br />
+  <br />
+  <%= link_to 'Add a Post', new_subcommunity_post_path(@subcom), class: 'btn btn-primary btn-small' %>
+  <br />
+  <div class='booyah-box'>
+    <h2>Posts</h2>
+    <br />
+    <% @subcom.posts.each do |post| %>
+      <h3><%=link_to post.title, subcommunity_post_path(@subcom, post) %>
+        <span>
+          <% if post.user.present? %>
+            <small class='username-text'> - <%= post.user.email %></small>
+          <% end %>
+        </span>
+      </h3>
+      </p>
+      <hr />
     <% end %>
-  </span>
-</p>
-
-
-<% end %>
+  </div>
+</div>
 
 

@@ -1,13 +1,12 @@
-<h1> Welcome to Community</h1>
-
-
-<% @posts.each do |post| %>
-  <div>
-    <%= post.title %>
-    <%= post.description %>
-    <% if post.user.present? %>
-      <small> -<%= post.user.email%></small>
-    <% end %>
-  </div> 
-
-<% end %>
+<h1 class='text-center'>Welcome to Community</h1>
+<div class='booyah-box'>
+  <% @posts.each do |post| %>
+    <p>
+      <%= link_to post.title, subcommunity_post_path(@subcom, post) %>
+      <% if post.user.present? %>
+        <small> -<%= post.user.email%></small>
+      <% end %>
+    </p>
+    <hr />
+  <% end %>
+</div>
