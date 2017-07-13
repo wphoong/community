@@ -1,5 +1,5 @@
 <h1 class='text-center'>Welcome to Community</h1>
-<div class='booyah-box'>
+<div class='booyah-box offset-1 col-10'>
   <% @posts.each do |post| %>
     <p>
       <%= link_to post.title, subcommunity_post_path(@subcom, post) %>
